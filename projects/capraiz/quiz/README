@@ -1,0 +1,17 @@
+Zach Caprai
+October 28th, 2018
+CS 362
+Random Testing Quiz
+
+Implemented a random tester for the testme() function in the
+testme.c program. A makefile was also created. 
+
+
+To compile the program run:
+
+make testmemake
+
+
+To clean up, run:
+
+make clean
