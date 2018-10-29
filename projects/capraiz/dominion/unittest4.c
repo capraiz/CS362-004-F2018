@@ -45,7 +45,7 @@ int main() {
     int j;
     int Count;
 
-    printf ("TESTING isGameOver():\n");
+    printf ("\n----------------------- TESTING isGameOver(): ---------------------------\n");
 
     // Initialize the gameState structs
     memcpy(&TempG, &G, sizeof(struct gameState));

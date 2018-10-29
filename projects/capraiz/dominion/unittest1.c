@@ -10,7 +10,10 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
+#include <stdbool.h>
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include "rngs.h"
 
@@ -18,7 +21,7 @@
 #define NOISY_TEST 1
 
 int main() {
-    int i;
+    int i, j;
     int seed = 1000;
     int numPlayer = 2;
     int maxBonus = 10;
@@ -27,6 +30,8 @@ int main() {
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
     struct gameState G;
+    typedef enum {numBuys, coins, supplyCount};
+    int z = numBuys;
     int maxHandCount = 5;
     // arrays of all coppers, silvers, and golds
     int coppers[MAX_HAND];
@@ -39,31 +44,81 @@ int main() {
         golds[i] = gold;
     }
 
-    const void* a;
-    const void* b;
-    int Check;
 
-    a == 5;
-    b == 10;
+    printf("\n----------------- TESTING buyCard() -----------------\n");
 
-    printf ("TESTING compare():\n");
-    
-    Check = compare(a, b);
+    for (z; z <= coins; z++) {
 
-    if (a > b) {
-       assert(Check == 1);
+       switch (z) {
+
+	  default:
+	     break;
+
+	  case numBuys:
+
+	     printf("TEST 1: numBuys    \n");
+
+	     G.numBuys = 0;
+
+	     if (buyCard(0, &G) == -1) {
+		printf("TEST 1 Passed\n");
+	     }
+
+	     else {
+		printf("TEST 1 Failed\n");
+	     }
+
+	     break;
+
+	  case coins:
+	     
+	     printf("TEST 2: Coins Needed     \n");
+
+	     for (i = curse; i < treasure_map; i++) {
+
+		printf("Card %d Cost\n", i+1);
+
+		G.coins = 0;
+		G.numBuys = 1;
+
+		if (buyCard(i, &G) == -1) {
+		   printf("TEST Passed\n");
+		}
+
+		else {
+		   printf("TEST Failed\n");
+		}
+	     }
+
+	     break;
+
+	  case supplyCount:
+
+	     printf("TEST 3: supplyCount       \n");
+
+	     G.numBuys = 2;
+
+	     for (j = curse; j < treasure_map; j++) {
+		
+		printf("Card %d Supply\n", j+1);
+
+		G.supplyCount[j] = 0;
+
+		if (buyCard(j, &G) == -1) {
+		   printf("TEST Passed\n");
+		}
+
+		else {
+		   printf("TEST Failed\n");
+		}
+	     }
+
+	     break;
+       }
     }
 
-    else if (a < b) {
-       assert(Check == -1);
-    }
 
-    else {
-       assert(Check == 0);
-    }
-
-
-    printf("All tests passed!\n");
+    //printf("All tests passed!\n");
 
     return 0;
 }

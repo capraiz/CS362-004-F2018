@@ -42,8 +42,10 @@ int main() {
     }
 
     int Check;
+    int Valid = 0;
+    int compare(const int* a, const int* b);
 
-    printf ("TESTING shuffle():\n");
+    printf ("\n-------------------- TESTING shuffle(): ----------------------\n");
 
     // Initialize the gameState structs
     memcpy(&TempG, &G, sizeof(struct gameState));
@@ -51,23 +53,58 @@ int main() {
     // Note: int shuffle(int player, struct gameState *state)
     Check = shuffle(0, &G);
 
+    // TEST 1.1
     if (G.deckCount[0] > 0) {
 
-        assert(Check != -1);
+        //assert(Check != -1);
+	if (Check != -1) {
+	   printf("TEST 1.1 Passed\n");
+	   Valid++;
+	}
+
+	else {
+	   printf("TEST 1.1 Failed\n");
+	}
 
         // Referenced from shuffle() function in dominion.c file
         qsort((void*)(G.deck[0]), G.deckCount[0], sizeof(int), compare);
         qsort((void*)(TempG.deck[0]), TempG.deckCount[0], sizeof(int), compare);
     }
 
+    // TEST 1.2
     else {
 
-        assert(Check != -1);
+        //assert(Check == -1);
+	if (Check == -1) {
+	   printf("TEST 1.2  Passed\n");
+	   Valid++;
+	}
+
+	else {
+	   printf("TEST 1.2 Failed\n");
+	}
+
     }
 
-    assert(memcmp(&G, &TempG, sizeof(struct gameState)) == 0);
+    //assert(memcmp(&G, &TempG, sizeof(struct gameState)) == 0);
 
-    printf("All tests passed!\n");
+    // TEST 2
+    if (memcmp(&G, &TempG, sizeof(struct gameState) == 0)) {
+       printf("TEST 2 Passed\n");
+       Valid++;
+    }
+
+    else {
+       printf("TEST 2 Failed\n");
+    }
+
+    if (Valid >= 2) {
+       printf("All tests passed!\n");
+    }
+
+    else {
+       printf("Not all tests passed!\n");
+    }
 
     return 0;
 

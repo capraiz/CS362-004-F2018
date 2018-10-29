@@ -42,8 +42,9 @@ int main() {
     }
 
     int Check;
+    int Valid = 0;
 
-    printf ("TESTING supplyCount():\n");
+    printf ("\n------------------ TESTING supplyCount(): ----------------------\n");
 
     Check = initializeGame(4, k, 1, &G);
 
@@ -57,15 +58,40 @@ int main() {
     printf("Supply Count of Adventurer = %d\n", Check);
 
     // Check that there are 10 Adventurer cards
-    assert(Check == 10);
+    //assert(Check == 10);
+    if (Check == 10) {
+       printf("TEST 1 Passed\n");
+       Valid++;
+    }
+
+    else {
+       printf("TEST 1 Failed\n");
+    }
 
     // Check last type of Kingdom card
     Check = supplyCount(great_hall, &G);
 
     printf("Supply Count of Great Hall = %d\n", Check);
-    assert(Check == 10);
+    //assert(Check == 10);
 
-    printf("All tests passed!\n");
+    if (Check == 10) {
+       printf("TEST 2 Passed\n");
+       Valid++;
+    }
+
+    else {
+       printf("TEST 2 Failed\n");
+    }
+
+
+    // Check if all tests passed
+    if (Valid == 2) {
+       printf("All tests passed!\n");
+    }
+
+    else {
+       printf("Not all tests passed!\n");
+    }
 
     return 0;
 

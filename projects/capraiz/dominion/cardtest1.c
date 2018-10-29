@@ -28,9 +28,9 @@ int main() {
     int xtraCoins = 0;
     int shuffledCards = 0;
 
-    int i, j, m;
+    //int i, j, m;
     int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-    int remove1, remove2;
+    //int remove1, remove2;
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
@@ -93,8 +93,8 @@ int main() {
 	printf("estate count = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate]);
 	printf("duchy count = %d, expected = %d\n", testG.supplyCount[duchy], G.supplyCount[duchy]);
 	printf("province count = %d, expected = %d\n", testG.supplyCount[province], G.supplyCount[province]);
-	assert(testG.supplyCount[estate] == G.handCount[estate]);
-	assert(testG.supplyCount[duchy] == G.deckCount[duchy]);
+	assert(testG.supplyCount[estate] == G.supplyCount[estate]);
+	assert(testG.supplyCount[duchy] == G.supplyCount[duchy]);
 	assert(testG.supplyCount[province] == G.supplyCount[province]);
 
 
